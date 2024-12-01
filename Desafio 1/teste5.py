@@ -59,7 +59,7 @@ class Solution(object):
 
         return custoTotal
 
-# Caso de teste
+#teste
 if __name__ == "__main__":
     pontos = [[3, 12], [-2, 5], [-4, 1]]
     solution = Solution()
