@@ -37,4 +37,46 @@ class Solution(object):
             self.descerElemento(heap, menor)
 
     def minCost(self, maxTime, edges, passingFees):
-        #codigo aqui
+        quantidadeCidades = len(passingFees)
+        grafo = [[] for _ in range(quantidadeCidades)]
+        for u, v, tempo in edges:
+            grafo[u].append((v, tempo))
+            grafo[v].append((u, tempo))
+
+        minTempo = [float('inf')] * quantidadeCidades
+        minTempo[0] = 0
+
+        heap = []
+        self.empurrar(heap, (passingFees[0], 0, 0))  # (custoTotal, tempoAtual, cidadeAtual)
+
+        while heap:
+            custoAtual, tempoAtual, cidadeAtual = self.retirar(heap)
+
+            if tempoAtual > maxTime:
+                continue
+
+            if cidadeAtual == quantidadeCidades - 1:
+                return custoAtual
+
+            if tempoAtual > minTempo[cidadeAtual]:
+                continue
+
+            minTempo[cidadeAtual] = tempoAtual
+
+            for vizinho, tempoAresta in grafo[cidadeAtual]:
+                novoTempo = tempoAtual + tempoAresta
+                novoCusto = custoAtual + passingFees[vizinho]
+
+                if novoTempo <= maxTime and novoTempo < minTempo[vizinho]:
+                    self.empurrar(heap, (novoCusto, novoTempo, vizinho))
+
+        return -1
+
+#teste
+if __name__ == "__main__":
+    maxTime = 29
+    edges = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]]
+    passingFees = [5,1,2,20,20,3]
+    solution = Solution()
+    resultado = solution.minCost(maxTime, edges, passingFees)
+    print("Custo mínimo :", resultado)  #48
