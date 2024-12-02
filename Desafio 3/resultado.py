@@ -1,4 +1,5 @@
 class Solution:
+    # Funções auxiliares para manipular a heap
     def empurrar(self, heap, item):
         heap.append(item)
         self.subirElemento(heap, len(heap) - 1)
@@ -42,7 +43,6 @@ class Solution:
             grafo[u].append((v, w))
             grafo_invertido[v].append((u, w))
 
-        # Função Dijkstra
         def dijkstra(origem, grafo):
             distancias = [float('inf')] * n
             distancias[origem] = 0
@@ -60,6 +60,12 @@ class Solution:
 
         dist_src1 = dijkstra(src1, grafo)
         dist_src2 = dijkstra(src2, grafo)
-        dist_dest = dijkstra(dest, grafo_invertido)  #Grafo invertido para calcular distâncias até dest
+        dist_dest = dijkstra(dest, grafo_invertido)  # Grafo invertido para calcular distâncias até dest
 
-        return -1#Retorno temporário
+        min_total = float('inf')
+        for i in range(n):
+            total = dist_src1[i] + dist_src2[i] + dist_dest[i]
+            if total < min_total:
+                min_total = total
+
+        return min_total if min_total != float('inf') else -1
