@@ -58,21 +58,3 @@ class Solution(object):
                     self.empurrar(heap, (distanciaTotal, proximoPonto))
 
         return custoTotal
-
-# Casos de teste
-if __name__ == "__main__":
-    # Caso de teste 1
-    pontos1 = [[0, 0], [2, 2], [3, 10], [5, 2], [7, 0]]
-    solution = Solution()
-    resultado1 = solution.minCostConnectPoints(pontos1)
-    print("Custo mínimo para conectar todos os pontos (Caso 1):", resultado1)  #20
-
-    # Caso de teste 2
-    pontos2 = [[3, 12], [-2, 5], [-4, 1]]
-    resultado2 = solution.minCostConnectPoints(pontos2)
-    print("Custo mínimo para conectar todos os pontos (Caso 2):", resultado2)  #18
-
-    # Caso de teste 3
-    pontos3 = [[0, 0], [1, 1], [1, 0], [-1, 1]]
-    resultado3 = solution.minCostConnectPoints(pontos3)
-    print("Custo mínimo para conectar todos os pontos (Caso 3):", resultado3)  #4

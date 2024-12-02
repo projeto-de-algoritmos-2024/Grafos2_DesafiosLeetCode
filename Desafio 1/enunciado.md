@@ -1,3 +1,5 @@
+[1584. Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/description/?envType=problem-list-v2&envId=graph&difficulty=MEDIUM)
+
 Você recebe uma matriz `points`representando coordenadas inteiras de alguns pontos em um plano 2D, onde .`points[i] = [xi, yi]`
 
 O custo de conectar dois pontos e é a **distância de Manhattan** entre eles: , onde denota o valor absoluto de .`[xi, yi][xj, yj]|xi - xj| + |yi - yj||val|val`
