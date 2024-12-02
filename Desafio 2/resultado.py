@@ -1,6 +1,3 @@
-#aplicar dijkstra para resolver esse problema com uma heap
-#vou usar a manipulação de heap do exercicio anterior
-
 class Solution(object):
     # manipular a heap
     def empurrar(self, heap, elemento):
@@ -71,27 +68,3 @@ class Solution(object):
                     self.empurrar(heap, (novoCusto, novoTempo, vizinho))
 
         return -1
-
-#teste
-if __name__ == "__main__":
-    # Caso de teste 1
-    maxTime1 = 30
-    edges1 = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]]
-    passingFees1 = [5,1,2,20,20,3]
-    solution = Solution()
-    resultado1 = solution.minCost(maxTime1, edges1, passingFees1)
-    print("Custo mínimo para completar a jornada (Caso 1):", resultado1)  #11
-
-    # Caso de teste 2
-    maxTime2 = 29
-    edges2 = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]]
-    passingFees2 = [5,1,2,20,20,3]
-    resultado2 = solution.minCost(maxTime2, edges2, passingFees2)
-    print("Custo mínimo para completar a jornada (Caso 2):", resultado2)  #48
-
-    # Caso de teste 3
-    maxTime3 = 25
-    edges3 = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]]
-    passingFees3 = [5,1,2,20,20,3]
-    resultado3 = solution.minCost(maxTime3, edges3, passingFees3)
-    print("Custo mínimo para completar a jornada (Caso 3):", resultado3)  #-1
