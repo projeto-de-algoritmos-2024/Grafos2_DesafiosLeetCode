@@ -1,5 +1,4 @@
 class Solution:
-    #Manipular heap
     def empurrar(self, heap, item):
         heap.append(item)
         self.subirElemento(heap, len(heap) - 1)
@@ -36,12 +35,15 @@ class Solution:
     def minimumWeight(self, n, edges, src1, src2, dest):
         from collections import defaultdict
 
+        # Construir o grafo
         grafo = defaultdict(list)
+        grafo_invertido = defaultdict(list)
         for u, v, w in edges:
             grafo[u].append((v, w))
+            grafo_invertido[v].append((u, w))
 
-        # Função Dijkstra a partir de src1
-        def dijkstra(origem):
+        # Função Dijkstra
+        def dijkstra(origem, grafo):
             distancias = [float('inf')] * n
             distancias[origem] = 0
             heap = []
@@ -56,10 +58,8 @@ class Solution:
                         self.empurrar(heap, (distancias[v], v))
             return distancias
 
-        dist_src1 = dijkstra(src1)
+        dist_src1 = dijkstra(src1, grafo)
+        dist_src2 = dijkstra(src2, grafo)
+        dist_dest = dijkstra(dest, grafo_invertido)  #Grafo invertido para calcular distâncias até dest
 
-        # Verificar se dest é alcançável a partir de src1
-        if dist_src1[dest] == float('inf'):
-            return -1
-        else:
-            return dist_src1[dest]
+        return -1#Retorno temporário
